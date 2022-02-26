@@ -40,7 +40,9 @@ class Tip_Calculator():
             cost_given = input('How much does the meal cost? ')
             try:
                 float(cost_given)
-                break
+                if float(cost_given) > 0:
+                    break
+                print('\nFree meal or negative cost isn\'t calculable. Let\'s try again.\n')
             except ValueError:
                 self.print_error_msg()
         # store food cost in calss after validation
@@ -55,7 +57,9 @@ class Tip_Calculator():
             num_given = input('How many people are dining together? ')
             try:
                 int(num_given)
-                break
+                if int(num_given) > 0:
+                    break
+                print('\nAt least one person will have been dining. Let\'s try agan.\n')
             except ValueError:
                 self.print_error_msg()
         # store number of diners in class after validation
@@ -70,7 +74,9 @@ class Tip_Calculator():
             tax_percentage = input('How many percent of the bill will be taxed?\nPlease give the percentage without the percentage sign >> ')
             try:
                 float(tax_percentage)
-                break
+                if float(tax_percentage) >= 0:
+                    break
+                print('\nNegative tax is impossible. Let\'s try again.\n')
             except ValueError:
                 self.print_error_msg()
         # store tax percentage in class after validation
@@ -85,7 +91,9 @@ class Tip_Calculator():
             tip_percentage = input('How many percent will you give for the tip?\nPlease give the percentage without the percentage sign >> ')
             try:
                 float(tip_percentage)
-                break
+                if float(tip_percentage) > 0:
+                    break
+                print('\nThe waiters/waitresses won\'t let you get away. Let\'s try again.\n')
             except ValueError:
                 self.print_error_msg()
         # store tip percentage in calss after validation
