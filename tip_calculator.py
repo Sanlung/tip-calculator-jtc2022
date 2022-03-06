@@ -29,8 +29,8 @@ class Tip_Calculator():
         'restaurant bill after tax and tip and each',
         'diner\'s share of the bill, based on the',
         'user input as to the number of diners in',
-        'the party and the percentages of sales tax',
-        'and tip the diners are willing to give.',
+        'the party and the percentages of the tip',
+        'that the diners give and of the sales tax.',
         sep='\n', end='\n\n')
 
     def get_food_cost(self):
@@ -39,13 +39,12 @@ class Tip_Calculator():
         while True:
             cost_given = input('How much does the meal cost? ')
             try:
-                float(cost_given)
                 if float(cost_given) > 0:
                     break
                 print('\nFree meal or negative cost isn\'t calculable. Let\'s try again.\n')
             except ValueError:
                 self.print_error_msg()
-        # store food cost in calss after validation
+        # store food cost in class after validation
         self.food_cost = float(cost_given)
         # confirm input with user
         print(f'🟡 The cost of the meal is {self.food_cost}.\n')
@@ -56,7 +55,6 @@ class Tip_Calculator():
         while True:
             num_given = input('How many people are dining together? ')
             try:
-                int(num_given)
                 if int(num_given) > 0:
                     break
                 print('\nAt least one person will have been dining. Let\'s try agan.\n')
@@ -71,9 +69,8 @@ class Tip_Calculator():
         """take input of the percentage of tax from user"""
         # process only valid input
         while True:
-            tax_percentage = input('How many percent of the bill will be taxed?\nPlease give the percentage without the percentage sign >> ')
+            tax_percentage = input('What percentage is the sales tax?\nPlease give the percentage without the percentage sign >> ')
             try:
-                float(tax_percentage)
                 if float(tax_percentage) >= 0:
                     break
                 print('\nNegative tax is impossible. Let\'s try again.\n')
@@ -88,9 +85,8 @@ class Tip_Calculator():
         """take input of the percentage of the tip from user"""
         # process only valid input
         while True:
-            tip_percentage = input('How many percent will you give for the tip?\nPlease give the percentage without the percentage sign >> ')
+            tip_percentage = input('What percentage are you going to tip?\nPlease give the percentage without the percentage sign >> ')
             try:
-                float(tip_percentage)
                 if float(tip_percentage) > 0:
                     break
                 print('\nThe waiters/waitresses won\'t let you get away. Let\'s try again.\n')
@@ -99,7 +95,7 @@ class Tip_Calculator():
         # store tip percentage in calss after validation
         self.tip_rate = float(tip_percentage)
         # confirm input with user
-        print(f'⚪️ You are willing to give a {self.tip_rate}% tip.\n')
+        print(f'⚪️ You are going to give a {self.tip_rate}% tip.\n')
 
     def print_error_msg(self):
         """print input error message to user"""
@@ -116,7 +112,7 @@ class Tip_Calculator():
         self.get_num_of_diners()
         self.get_tax_rate()
         self.get_tip_rate()
-        # if all is well, calculate total bill/diners' share
+        # if all is well, calculate total bill/each diner's share
         tax = self.food_cost * self.tax_rate / 100
         tip = self.food_cost * self.tip_rate / 100
         total_with_tax_and_tip = self.food_cost + tax + tip
